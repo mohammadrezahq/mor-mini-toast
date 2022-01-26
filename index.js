@@ -71,7 +71,7 @@ class toast {
         const e = this.e
         document.body.appendChild(e)
         e.style.opacity = 0
-        e.style.position = 'absolute'
+        e.style.position = 'fixed'
         e.style.display = 'block'
         e.style.top = this.options.position.top
         e.style.right = this.options.position.right
