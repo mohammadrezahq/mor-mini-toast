@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Mor Mini Toast for js
 
 You can use the [editor on GitHub](https://github.com/mohammadrezahq/mini-toast-js/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
