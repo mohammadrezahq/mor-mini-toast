@@ -1,7 +1,7 @@
-const Style = require('./style.js')
-const defaultOptions = require('./defaultOptions.js')
-const icon = require('./icon.js')
-const ct = require('./closeToastWithButton')
+const Style = require('./inc/style.js')
+const defaultOptions = require('./inc/defaultOptions.js')
+const icon = require('./inc/icon.js')
+const ct = require('./inc/closeToastWithButton')
 
 class app {
 
