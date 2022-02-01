@@ -1,6 +1,7 @@
 const Style = require('./style.js')
 const defaultOptions = require('./defaultOptions.js')
 const icon = require('./icon.js')
+const ct = require('./closeToastWithButton')
 
 class app {
 
@@ -36,7 +37,7 @@ class app {
             closeElement.classList.add('close-toast-button');
             closeElement.innerHTML += icon.getIcon('close', this.options.advanced.closeIconColor);
             let event = this;
-            closeElement.addEventListener('click', function() { closeToastWithButton(event.e, event.exitStyle) })
+            closeElement.addEventListener('click', function() { ct.closeToastWithButton(event.e, event.exitStyle) })
             this.e.appendChild(closeElement);
         }
 
@@ -274,39 +275,6 @@ class app {
     }
 }
 
-function closeToastWithButton(e, exitStyle) {
 
-    if (exitStyle == 'right') {
-
-        e.style.right = "10px";
-        e.classList.add('slideToRight');
-
-    } else if (exitStyle == 'left') {
-
-        e.style.left = "10px";
-
-        e.classList.add('slideToLeft');
-
-    } else if (exitStyle == 'bottom') {
-
-        e.style.bottom = "10px";
-
-        e.classList.add('slideToBottom');
-
-    } else if (exitStyle == 'top') {
-
-        e.style.top = "10px";
-
-        e.classList.add('slideToTop');
-
-    } else {
-
-        e.style.opacity = 0;
-
-    }
-
-
-    setTimeout(() => e.remove(), 1000)
-}
 
 module.exports = app
