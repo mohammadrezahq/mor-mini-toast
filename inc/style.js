@@ -9,56 +9,56 @@ class Style {
               display:inline-block;
               vertical-align: middle;
           }
-          .slideFromLeft {
+          .slide-from-right {
               -webkit-animation: slide-from-left-keyframe 0.5s forwards;
               -webkit-animation-delay: 0.1s;
               animation: slide-from-left-keyframe 0.5s forwards;
               animation-delay: 0.1s;
           }
 
-          .slideToLeft {
+          .slide-to-left {
               -webkit-animation: slide-to-left-keyframe 0.5s forwards;
               -webkit-animation-delay: 0.1s;
               animation: slide-to-left-keyframe 1s forwards;
               animation-delay: 0.1s;
           }
 
-          .slideFromRight {
+          .slide-from-right {
               -webkit-animation: slide-from-right-keyframe 0.5s forwards;
               -webkit-animation-delay: 0.1s;
               animation: slide-from-right-keyframe 0.5s forwards;
               animation-delay: 0.1s;
           }
 
-          .slideToRight {
+          .slide-to-right {
               -webkit-animation: slide-to-right-keyframe 1s forwards;
               -webkit-animation-delay: 0.1s;
               animation: slide-to-right-keyframe 1s forwards;
               animation-delay: 0.1s;   
           }
 
-          .slideFromBottom {
+          .slide-from-bottom {
               -webkit-animation: slide-from-bottom-keyframe 1s forwards;
               -webkit-animation-delay: 0.1s;
               animation: slide-from-bottom-keyframe 1s forwards;
               animation-delay: 0.1s;   
           }
 
-          .slideFromTop {
+          .slide-from-top {
               -webkit-animation: slide-from-top-keyframe 1s forwards;
               -webkit-animation-delay: 0.1s;
               animation: slide-from-top-keyframe 1s forwards;
               animation-delay: 0.1s;   
           }
 
-          .slideToBottom {
+          .slide-to-bottom {
               -webkit-animation: slide-to-bottom-keyframe 1s forwards;
               -webkit-animation-delay: 0.1s;
               animation: slide-to-bottom-keyframe 1s forwards;
               animation-delay: 0.1s;   
           }
 
-          .slideToTop {
+          .slide-to-top {
               -webkit-animation: slide-to-top-keyframe 1s forwards;
               -webkit-animation-delay: 0.1s;
               animation: slide-to-top-keyframe 1s forwards;
