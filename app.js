@@ -1,45 +1,46 @@
-const Style = require('./inc/style.js')
-const defaultOptions = require('./inc/defaultOptions.js')
+const d = require('./inc/defaultOptions.js')
 const icon = require('./inc/icon.js')
-const ct = require('./inc/closeToastWithButton')
+const enter = require('./inc/handleEnter')
+const exit = require('./inc/handleExit')
 
 class app {
 
-    constructor(message, type = 'simple', options = null) {
+    constructor(message, options = null) {
 
-        this.options = Object.assign({}, defaultOptions, options)
-        this.type = type
-        this.message = message
-        this.enter = this.options.in
-        this.exit = this.options.out
-        this.handle()
+        this.options = { ...d.getDefaultOptions(), ...options }
+        this.icon = this.options.icon;
+        this.message = message;
+        this.enter = this.options.in;
+        this.exit = this.options.out;
+        this.handle();
 
     }
 
     handle() {
 
         this.createElement();
-        new Style();
         this.styleElement();
-        this.setPosition();
 
     }
 
     createElement() {
 
         const e = document.createElement('div')
+        if (document.getElementsByClassName('mini-toast').length == 0 || this.options.overlayToast === true) {
+            e.setAttribute('mini-toast-id', 1);
+        } else {
+            for(let i = 1; i <= document.getElementsByClassName('mini-toast').length + 1; i++) {
+                if(!document.querySelector("[mini-toast-id='" + i + "']") && !e.getAttribute('mini-toast-id')) {
+                    e.setAttribute('mini-toast-id', i);
+                }
+            }
+        }
         e.setAttribute("class", "mini-toast");
-        this.e = e
+        this.e = e;
         this.setIcon();
         this.setMessage();
-        if (this.options.canClose === true) {
-            const closeElement = document.createElement('span');
-            closeElement.classList.add('close-toast-button');
-            closeElement.innerHTML += icon.getIcon('close', this.options.advanced.closeIconColor);
-            let event = this;
-            closeElement.addEventListener('click', function() { ct.closeToastWithButton(event.e, event.exitStyle) })
-            this.e.appendChild(closeElement);
-        }
+        this.setCloseButton();
+
 
     }
 
@@ -51,24 +52,38 @@ class app {
 
     setIcon() {
 
-        if (this.type !== 'simple') {
-            this.e.innerHTML += "<span style='margin:0 5px; display:inline-block; vertical-align: middle;'>" + icon.getIcon(this.type, this.options.iconColor) + "</span>";
+        if (this.icon !== 'none') {
+            this.e.innerHTML += "<span style='margin:0 5px; display:inline-block; vertical-align: middle;'>" + icon.getIcon(this.icon, this.options.iconColor) + "</span>";
         }
 
+    }
+    
+    setCloseButton() {
+        if (this.options.canClose === true) {
+            const closeElement = document.createElement('span');
+            closeElement.style.verticalAlign = 'middle';
+            closeElement.style.margin = '0 5px';
+            closeElement.style.display = 'inline-block';
+            closeElement.style.cursor = 'pointer';
+            closeElement.innerHTML += icon.getIcon('close', this.options.closeIconColor);
+            let thisClass = this;
+            closeElement.addEventListener('click', function () { thisClass.closeToastWithButton() });
+            this.e.appendChild(closeElement);
+        }
     }
 
     styleElement() {
 
         const e = this.e
         document.body.appendChild(e)
-        e.style.opacity = 0
         e.style.position = 'fixed'
         e.style.display = 'block'
         e.style.backgroundColor = this.options.bgColor
         e.style.padding = this.options.padding
         e.style.color = this.options.textColor
-        e.style.transition = 'opacity 1s'
-        e.style.fontSize = this.options.fontSize
+        e.style.opacity = 0
+        e.style.transition = 'opacity ' + this.options.enterDuration + 'ms';
+        e.style.fontSize = this.options.fontSize;
         e.style.boxShadow = '0px 6px 17px 2px rgba(0,0,0,0.10)'
         e.style.borderRadius = this.options.borderRadius
         e.style.fontFamily = this.options.fontFamily
@@ -77,160 +92,10 @@ class app {
         this.e = e
 
     }
-    
-    setPosition() {
-        let v = this.options.position.v
-        let h = this.options.position.h
 
-        if (v === 'top') { 
-            let length = document.getElementsByClassName('mini-toast').length;
-            if (length == 1) {
-                this.e.style.top = '10px' ;
-            } else {
-                let top = document.getElementsByClassName('mini-toast')[length - 2].offsetTop + 50;
-                top += "px";
-                this.e.style.top = top;
-            }
-        }
-
-        if (v === 'bottom') { 
-            let length = document.getElementsByClassName('mini-toast').length;
-            if (length == 1) {
-                this.e.style.bottom = '10px' ;
-            } else {
-                let bottom = document.getElementsByClassName('mini-toast')[length - 2].style.bottom;
-                bottom = bottom.replace('px', '');
-                bottom = parseInt(bottom)
-                bottom += 50
-                bottom += "px";
-                this.e.style.bottom = bottom;
-            }
-            console.log(document.getElementsByClassName('mini-toast'))
-        }
-
-        if (v === 'center') { 
-            this.e.style.top = '50%' 
-            this.e.style.transform = 'translateY(-50%)'
-        }
-
-        // ------------------------
-
-        if (h === 'right') { 
-            this.setInOutStyle('right')
-        }
-
-        if (h === 'left') { 
-            this.setInOutStyle('left')
-        }
-
-        if (h === 'center') { 
-            this.setInOutStyle('center', v)
-        }
-
-    }
-
-    setInOutStyle(position, v = null) {
-        if (this.options.in === 'slide') {
-
-            if (position === 'right') {
-
-                this.enterStyle = 'right'
-                this.e.style.right = '-15em' 
-                this.e.classList.add('slideFromRight')
-
-
-            } else if (position === "left") {
-
-                this.enterStyle = 'left'
-                this.e.style.left = '-15em' 
-                this.e.classList.add('slideFromLeft')
-
-            } else {
-
-                if (v === 'bottom') {
-
-                    this.enterStyle = 'bottom'
-                    this.e.style.bottom = '-50px' 
-                    this.e.style.left = '50%' 
-                    this.e.style.transform = 'translateX(-50%)'
-                    this.e.classList.add('slideFromBottom')
-
-                } else if (v === "top") {
-
-                    this.enterStyle = 'top'
-                    this.e.style.top = '-50px' 
-                    this.e.style.left = '50%' 
-                    this.e.style.transform = 'translateX(-50%)'
-                    this.e.classList.add('slideFromTop')
-
-                } else {
-
-                    this.enterStyle = 'fade'
-                    this.e.style.left = '50%' 
-                    this.e.style.transform = 'translateX(-50%)'
-
-                }
-
-            }
-
-        } else if (this.options.in === 'fade') {
-
-            if (position === 'right') {
-
-                this.enterStyle = 'fade'
-                this.e.style.right = '10px' 
-
-
-            } else if (position === "left") {
-
-                this.enterStyle = 'fade'
-                this.e.style.left = '10px' 
-
-            } else {
-
-                this.enterStyle = 'fade'
-                this.e.style.left = '50%' 
-                this.e.style.transform = 'translateX(-50%)'
-
-            }
-
-        }
-
-        if (this.options.out === "slide") {
-
-
-            if (position === 'right') {
-
-                this.exitStyle = 'right'
-
-
-            } else if (position === "left") {
-
-                this.exitStyle = 'left'
-
-            } else if (position === "center") {
-
-                if (v === 'top') {
-
-                    this.exitStyle = 'top'
-
-                } else if (v === 'bottom') {
-
-                    this.exitStyle = 'bottom'
-
-                }
-            }
-
-        } else if (this.options.out === "fade") {
-
-            this.exitStyle = 'fade'
-
-        }
-        
-    }
-    
     show() {
 
+        enter.handle(this.e, this.options.position, this.options.in, this.options.enterDuration);
         setTimeout(() => this.e.style.opacity = 1, 100);
 
         if (this.options.onlyClose === false) {
@@ -240,38 +105,18 @@ class app {
 
     closeToastWithTime() {
 
-        if (this.exitStyle == 'right') {
 
-            setTimeout(() => this.e.style.right = "10px", this.options.showTime);
+        setTimeout(() => exit.handle(this.e, this.options.position, this.options.out, this.options.enterDuration) , this.options.showTime);
 
-            setTimeout(() => this.e.classList.add('slideToRight'), this.options.showTime);
+        setTimeout(() => this.e.remove(), this.options.showTime + 1000)
 
-        } else if (this.exitStyle == 'left') {
+    }
 
-            setTimeout(() => this.e.style.left = "10px", this.options.showTime);
+    closeToastWithButton() {
 
-            setTimeout(() => this.e.classList.add('slideToLeft'), this.options.showTime);
-
-        } else if (this.exitStyle == 'bottom') {
-
-            setTimeout(() => this.e.style.bottom = "10px", this.options.showTime);
-
-            setTimeout(() => this.e.classList.add('slideToBottom'), this.options.showTime);
-
-        } else if (this.exitStyle == 'top') {
-
-            setTimeout(() => this.e.style.top = "10px", this.options.showTime);
-
-            setTimeout(() => this.e.classList.add('slideToTop'), this.options.showTime);
-
-        } else {
-
-            setTimeout(() => this.e.style.opacity = 0, this.options.showTime)
-
-        }
-
-        setTimeout(() => this.e.remove(), this.options.showTime + 500)
-
+        exit.handle(this.e, this.options.position, this.options.out, this.options.enterDuration)
+    
+        setTimeout(() => this.e.remove(), 1000);
     }
 }
 

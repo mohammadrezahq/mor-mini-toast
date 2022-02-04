@@ -1,14 +1,13 @@
-const app = require('./inc/app.js')
+const app = require('./app.js')
 
 class toast {
 
-    init(message, type = 'simple', options = null) {
+    init(message, options = null) {
 
-        const toast = new app(message, type, options)
+        const toast = new app(message, options);
+        this.toast = toast;
 
-        this.toast = toast
-
-        return this
+        return this;
 
     }
 

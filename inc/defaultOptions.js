@@ -1,8 +1,11 @@
 function getDefaultOptions() {
     defaultOptions = {
-        in: 'slide', // slide, fade
-        out: 'slide', 
-        showTime: 2000,
+        position: 'top-left',
+        icon: 'success',
+        in: 'slide-left',
+        out: 'slide-left', 
+        showTime: 3000,
+        dir: 'ltr',
         bgColor: 'white',
         textColor: 'black',
         iconColor: 'black',
@@ -11,19 +14,17 @@ function getDefaultOptions() {
         fontSize: '16px',
         padding: '10px',
         fontFamily: 'Tahoma',
-        dir: 'ltr',
+        closeIconColor: 'black',
         canClose: false, 
         onlyClose: false,
-        position: {
-            v: 'top', // top, bottom, center
-            h: 'right' // left, right, center
-        },
-        advanced: {
-            closeIconColor: 'black'
-        }
+        overlayToast: false,
+        enterDuration: 350,
+        exitDuration: 1000,
     }
 
     return defaultOptions;
 }
 
-module.exports = getDefaultOptions()
+module.exports = {
+    getDefaultOptions
+}
