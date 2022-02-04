@@ -1,33 +1,139 @@
-## Mor Mini Toast for js
+# Mor Mini Toast for JavaScript
 
-### Markdown
+### Setup:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Install package with npm:
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+npm i mor-mini-toast
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### Import
 
-### Jekyll Themes
+```
+import MiniToast from 'mor-mini-toast'
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mohammadrezahq/mini-toast-js/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+// OR
 
-### Support or Contact
+const MiniToast = require('mor-mini-toast')
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### Initialize
+
+```
+let toast = MiniToast.init(String message, Object options)
+
+// Message will be the text of the toast
+
+```
+
+### Set Position
+
+```
+let options = {
+    position: 'top-left' // default 
+}
+```
+The position of the toast should be a combination of a vertical position and - a horizontal position: 'top-left', 'middle-center', 'bottom-right'
+
+
+### Set Icon
+```
+let options = {
+    icon: 'success' // default 
+}
+```
+Icons: 'none', 'success', 'alert', 'warn', 'error'
+
+
+### Animations
+
+You can set the enter and exit animation:
+
+```
+let options = {
+    in: 'slide-left', // enter animation: Slide From Left - default 
+    out: 'slide-left' // exit animation: Slide To Left - default 
+}
+```
+
+<b>At the moment</b> This just supports 'slide' animations and 'fade'. 'V3.0.1'
+
+
+### Show time
+
+How long this toast stays on the web page.
+
+```
+let options = {
+    showtime: 3000 // default
+}
+```
+
+### Language Direction
+
+let options = {
+    dir: 'ltr' // default
+}
+
+
+### Style
+
+Default options:
+
+```
+let options = {
+    bgColor: 'white',
+    textColor: 'black',
+    iconColor: 'black',
+    border: 'none',
+    borderRadius: '10px',
+    fontSize: '16px',
+    padding: '10px',
+    fontFamily: 'Tahoma',
+    closeIconColor: 'black'
+}
+```
+
+
+### Close Button Options
+
+```
+let options = {
+    canClose: false, // default
+    onlyClose: false // default
+}
+```
+
+<b>canClose:</b> by setting true this option, close button shows to user.
+<b>onlyClose:</b> by setting true this option, the toast will stay on the web page until user clicks close button. (showTime is ignored)
+
+
+### Advanced
+
+#### Overlay toast
+
+At default, overlay toast is disabled, so multiple toasts will be shown under each other. if it's enabled, toasts cover each other.
+
+```
+let options = {
+    overlayToast: false // default
+}
+```
+
+> Multiple toasts does not support on toasts with 'middle' vertically position.
+
+#### Enter and Exit Duration
+
+```
+let options = {
+    enterDuration: 350, // default
+    exitDuration: 1000 // default
+}
+```
+
+### Show the toast
+
+```
+toast.show()
+```
