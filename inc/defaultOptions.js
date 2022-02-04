@@ -18,7 +18,7 @@ function getDefaultOptions() {
         canClose: false, 
         onlyClose: false,
         overlayToast: false,
-        enterDuration: 350,
+        enterDuration: 1000,
         exitDuration: 1000,
     }
 

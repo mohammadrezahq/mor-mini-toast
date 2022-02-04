@@ -121,11 +121,13 @@ let options = {
 }
 ```
 
+> Multiple toasts does not support on toasts with 'middle' vertically position.
+
 #### Enter and Exit Duration
 
 ```
 let options = {
-    enterDuration: 350, // default
+    enterDuration: 1000, // default
     exitDuration: 1000 // default
 }
 ```
