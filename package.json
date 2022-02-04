@@ -1,8 +1,9 @@
 {
   "name": "mor-mini-toast",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Mini toast",
   "main": "index.js",
+  "files": ["inc", "app.js"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
