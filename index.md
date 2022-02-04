@@ -36,6 +36,7 @@ let options = {
 ```
 The position of the toast should be a combination of a vertical position and - a horizontal position: 'top-left', 'middle-center', 'bottom-right'
 
+![Set Position](/images/simple.gif)
 
 ### Set Icon
 ```
@@ -59,6 +60,10 @@ let options = {
 
 <b>At the moment</b> This just supports 'slide' animations and 'fade'. 'V3.0.1'
 
+![Slide Animation](/images/slide-left-slide-top.gif)
+
+![Fade Animation](/images/fade.gif)
+
 
 ### Show time
 
@@ -75,6 +80,8 @@ let options = {
 let options = {
     dir: 'ltr' // default
 }
+
+![Direction](/images/direction.gif)
 
 
 ### Style
@@ -95,6 +102,8 @@ let options = {
 }
 ```
 
+![Changing style](/images/change-style.gif)
+
 
 ### Close Button Options
 
@@ -107,6 +116,8 @@ let options = {
 
 <b>canClose:</b> by setting true this option, close button shows to user.
 <b>onlyClose:</b> by setting true this option, the toast will stay on the web page until user clicks close button. (showTime is ignored)
+
+![Changing style](/images/close-with-button.gif)
 
 
 ### Advanced
@@ -122,6 +133,11 @@ let options = {
 ```
 
 > Multiple toasts does not support on toasts with 'middle' vertically position.
+
+![Multiple toasts](/images/multiple-toasts.gif)
+
+![Overlay toasts](/images/overlay-toast.gif)
+
 
 #### Enter and Exit Duration
 
