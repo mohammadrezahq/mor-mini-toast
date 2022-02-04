@@ -1,5 +1,9 @@
 # Mor Mini Toast for JavaScript
 
+
+Read the documentation here: https://mohammadrezahq.github.io/mor-mini-toast/
+
+
 ### Setup:
 
 Install package with npm:
