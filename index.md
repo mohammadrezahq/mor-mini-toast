@@ -1,5 +1,18 @@
 # Mor Mini Toast for JavaScript
 
+
+<script src="https://unpkg.com/mor-mini-toast@3.x/umd/bundle.js"></script>
+<script>
+let options {
+    icon: 'success'
+};
+    
+let toast = window.miniToast.init('This is a test', options);
+    
+function showToast() {
+    toast.show();
+}
+</script>
 ### Setup:
 
 Install package with npm:
@@ -8,9 +21,14 @@ Install package with npm:
 npm i mor-mini-toast
 ```
 
+Import package directly on web page:
+
+```html
+<script src="https://unpkg.com/mor-mini-toast@3.x/umd/bundle.js"></script>
+```
 ### Import
 
-```
+```js
 import MiniToast from 'mor-mini-toast'
 
 // OR
@@ -20,15 +38,19 @@ const MiniToast = require('mor-mini-toast')
 
 ### Initialize
 
-```
+```js
 let toast = MiniToast.init(String message, Object options)
 
 // Message will be the text of the toast
+
+// With bundle.js use this:
+let toast = window.miniToast.init(String message, Object options)
+
 ```
 
 ### Set Position
 
-```
+```js
 let options = {
     position: 'top-left' // default 
 }
@@ -38,19 +60,20 @@ The position of the toast should be a combination of a vertical position and - a
 ![Set Position](/images/simple.gif)
 
 ### Set Icon
-```
+```js
 let options = {
     icon: 'success' // default 
 }
 ```
 Icons: 'none', 'success', 'alert', 'warn', 'error'
 
+<button onCLick="showToast()">Try me</button>
 
 ### Animations
 
 You can set the enter and exit animation:
 
-```
+```js
 let options = {
     in: 'slide-left', // enter animation: Slide From Left - default 
     out: 'slide-left' // exit animation: Slide To Left - default 
@@ -68,7 +91,7 @@ let options = {
 
 How long this toast stays on the web page.
 
-```
+```js
 let options = {
     showtime: 3000 // default
 }
@@ -76,7 +99,7 @@ let options = {
 
 ### Language Direction
 
-```
+```js
 let options = {
     dir: 'ltr' // default
 }
@@ -89,7 +112,7 @@ let options = {
 
 Default options:
 
-```
+```js
 let options = {
     bgColor: 'white',
     textColor: 'black',
@@ -108,7 +131,7 @@ let options = {
 
 ### Close Button Options
 
-```
+```js
 let options = {
     canClose: false, // default
     onlyClose: false // default
@@ -127,7 +150,7 @@ let options = {
 
 At default, overlay toast is disabled, so multiple toasts will be shown under each other. if it's enabled, toasts cover each other.
 
-```
+```js
 let options = {
     overlayToast: false // default
 }
@@ -142,7 +165,7 @@ let options = {
 
 #### Enter and Exit Duration
 
-```
+```js
 let options = {
     advanced: {
         enterDuration: 1000, // default
@@ -153,7 +176,7 @@ let options = {
 
 #### Toast Distance from Each Other and Web Page
 
-```
+```js
 let options = {
     advanced: {
         vDistance: 10, // Distance from Top,Bottom(By px) - default
@@ -164,6 +187,6 @@ let options = {
 
 ### Show the toast
 
-```
+```js
 toast.show()
 ```
