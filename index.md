@@ -1,8 +1,11 @@
 # Mor Mini Toast for JavaScript
 
 
-<script src="https://unpkg.com/mor-mini-toast@3.x/umd/bundle.js"></script>
+<script src="https://unpkg.com/mor-mini-toast@3.x/umd/bundle.js">
+</script>
+
 <script>
+    
 let options {
     icon: 'success'
 };
@@ -12,6 +15,7 @@ let toast = window.miniToast.init('This is a test', options);
 function showToast() {
     toast.show();
 }
+
 </script>
 ### Setup:
 
