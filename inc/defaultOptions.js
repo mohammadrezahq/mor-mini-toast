@@ -17,14 +17,24 @@ function getDefaultOptions() {
         closeIconColor: 'black',
         canClose: false, 
         onlyClose: false,
-        overlayToast: false,
-        enterDuration: 1000,
-        exitDuration: 1000,
-    }
+        overlayToast: false
+    };
 
     return defaultOptions;
 }
 
+function getDefaultAdvanced() {
+    advanced = {
+        enterDuration: 1000,
+        exitDuration: 1000,
+        vDistance: 10,
+        hDistance: 10
+    };
+
+    return advanced;
+}
+
 module.exports = {
-    getDefaultOptions
+    getDefaultOptions,
+    getDefaultAdvanced
 }

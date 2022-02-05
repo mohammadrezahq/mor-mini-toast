@@ -67,7 +67,13 @@ const verticalPositions = ['top', 'middle', 'bottom'];
 const horizontalPositions = ['left', 'center', 'right'];
 
 
-function handle(element, position, enter, duration) {
+function handle(element, options) {
+
+    let position = options.position;
+    let enter = options.in;
+    let duration = options.advanced.enterDuration;
+    let vDistance = options.advanced.vDistance;
+    let hDistance = options.advanced.hDistance;
     
     let verticalPosition = positions[position].v; 
     let horizontalPosition = positions[position].h; 
@@ -86,16 +92,17 @@ function handle(element, position, enter, duration) {
         let finalVertical;
 
         if (element.getAttribute('mini-toast-id') == 1) {
-            finalVertical = '10px' ;
+            finalVertical = vDistance + 'px' ;
         } else {
-            finalVertical = (element.getAttribute('mini-toast-id') - 1) * 61.238;
-            finalVertical -= (element.getAttribute('mini-toast-id') - 2) * 10;
+            finalVertical = vDistance;
+            finalVertical += (element.getAttribute('mini-toast-id') - 1) * element.offsetHeight;
+            finalVertical += (element.getAttribute('mini-toast-id') - 1) * vDistance;
             finalVertical += "px";
         }
         
         if (verticalPositions.includes(enterDirection)) {
 
-            element.style[horizontalPosition] = '10px';
+            element.style[horizontalPosition] = hDistance + 'px';
 
             if (verticalPosition == enterDirection) {
 
@@ -103,12 +110,12 @@ function handle(element, position, enter, duration) {
 
             } else {
 
-                let distance = window.innerHeight - 51.727;
+                let distance = window.innerHeight - (element.offsetHeight + vDistance);
 
                 if (element.getAttribute('mini-toast-id') == 1) {
                     finalVertical = distance + 'px';
                 } else {
-                    finalVertical = distance - ( (element.getAttribute('mini-toast-id') - 1) * 51.727);
+                    finalVertical = distance - ( (element.getAttribute('mini-toast-id') - 1) * (element.offsetHeight + vDistance));
                     finalVertical += "px";
                 }
 
@@ -125,12 +132,12 @@ function handle(element, position, enter, duration) {
 
             if (enterDirection == horizontalPosition) {
 
-                keyframes[enterDirection] = '10px';
+                keyframes[enterDirection] = hDistance + 'px';
 
             } else {
 
                 let distance = window.innerWidth - element.offsetWidth;
-                distance -= 10;
+                distance -= hDistance;
                 distance += "px";
                 keyframes[enterDirection] = distance;
 
@@ -160,7 +167,7 @@ function handle(element, position, enter, duration) {
 
             if (verticalPositions.includes(enterDirection)) {
 
-                element.style[horizontalPosition] = '10px';
+                element.style[horizontalPosition] = hDistance + 'px';
                 element.style[enterDirection] = '-50px';
                 keyframes[enterDirection] = '50%';
                 if (enterDirection == 'top') {
@@ -175,10 +182,10 @@ function handle(element, position, enter, duration) {
                 element.style.transform = 'translateY(-50%)';
                 element.style[enterDirection] = '-15em';
                 if (enterDirection == horizontalPosition) {
-                    keyframes[enterDirection] = '10px';
+                    keyframes[enterDirection] = hDistance + 'px';
                 } else {
                     let distance = window.innerWidth - element.offsetWidth;
-                    distance -= 10;
+                    distance -= hDistance;
                     distance += "px";
                     keyframes[enterDirection] = distance;
                 }
@@ -225,17 +232,20 @@ function handle(element, position, enter, duration) {
     } else if (enterAnimation == 'fade') {
 
         if (verticalPosition == 'middle') {
+
             element.style.top = '50%';
             element.style.transform = 'translateY(-50%)';
+
         } else {
 
             let finalVertical;
 
             if (element.getAttribute('mini-toast-id') == 1) {
-                finalVertical = '10px' ;
+                finalVertical = vDistance + 'px' ;
             } else {
-                finalVertical = (element.getAttribute('mini-toast-id') - 1) * 61.238;
-                finalVertical -= (element.getAttribute('mini-toast-id') - 2) * 10;
+                finalVertical = vDistance;
+                finalVertical += (element.getAttribute('mini-toast-id') - 1) * element.offsetHeight;
+                finalVertical += (element.getAttribute('mini-toast-id') - 1) * vDistance;
                 finalVertical += "px";
             }
 
@@ -246,7 +256,7 @@ function handle(element, position, enter, duration) {
             element.style.left = '50%';
             element.style.transform = 'translateX(-50%)';
         } else {
-            element.style[horizontalPosition] = '10px';
+            element.style[horizontalPosition] = hDistance + 'px';
         }
 
     }

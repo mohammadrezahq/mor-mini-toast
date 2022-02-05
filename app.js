@@ -7,7 +7,8 @@ class app {
 
     constructor(message, options = null) {
 
-        this.options = { ...d.getDefaultOptions(), ...options }
+        this.options = { ...d.getDefaultOptions(), ...options };
+        this.options.advanced = {...d.getDefaultAdvanced(), ...options.advanced};
         this.icon = this.options.icon;
         this.message = message;
         this.enter = this.options.in;
@@ -95,7 +96,7 @@ class app {
 
     show() {
 
-        enter.handle(this.e, this.options.position, this.options.in, this.options.enterDuration);
+        enter.handle(this.e, this.options);
         setTimeout(() => this.e.style.opacity = 1, 100);
 
         if (this.options.onlyClose === false) {
@@ -106,7 +107,7 @@ class app {
     closeToastWithTime() {
 
 
-        setTimeout(() => exit.handle(this.e, this.options.position, this.options.out, this.options.enterDuration) , this.options.showTime);
+        setTimeout(() => exit.handle(this.e, this.options.position, this.options.out, this.options.exitDuration) , this.options.showTime);
 
         setTimeout(() => this.e.remove(), this.options.showTime + 1000)
 
@@ -114,7 +115,7 @@ class app {
 
     closeToastWithButton() {
 
-        exit.handle(this.e, this.options.position, this.options.out, this.options.enterDuration)
+        exit.handle(this.e, this.options.position, this.options.out, this.options.exitDuration)
     
         setTimeout(() => this.e.remove(), 1000);
     }
