@@ -24,7 +24,6 @@ const MiniToast = require('mor-mini-toast')
 let toast = MiniToast.init(String message, Object options)
 
 // Message will be the text of the toast
-
 ```
 
 ### Set Position
@@ -58,7 +57,7 @@ let options = {
 }
 ```
 
-<b>At the moment</b> This just supports 'slide' animations and 'fade'. 'V3.0.1'
+<b>At the moment</b> This just supports 'slide' animations and 'fade'. 'V3.1.x'
 
 ![Slide Animation](/images/slide-left-slide-top.gif)
 
@@ -77,9 +76,11 @@ let options = {
 
 ### Language Direction
 
+```
 let options = {
     dir: 'ltr' // default
 }
+```
 
 ![Direction](/images/direction.gif)
 
@@ -143,8 +144,21 @@ let options = {
 
 ```
 let options = {
-    enterDuration: 350, // default
-    exitDuration: 1000 // default
+    advanced: {
+        enterDuration: 1000, // default
+        exitDuration: 1000 // default
+    }
+}
+```
+
+#### Toast Distance from Each Other and Web Page
+
+```
+let options = {
+    advanced: {
+        vDistance: 10, // Distance from Top,Bottom(By px) - default
+        hDistance: 10 //  Distance from Right,Left(By px) - default
+    }
 }
 ```
 
