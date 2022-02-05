@@ -107,7 +107,7 @@ class app {
     closeToastWithTime() {
 
 
-        setTimeout(() => exit.handle(this.e, this.options.position, this.options.out, this.options.exitDuration) , this.options.showTime);
+        setTimeout(() => exit.handle(this.e, this.options.position, this.options.out, this.options.advanced.exitDuration) , this.options.showTime);
 
         setTimeout(() => this.e.remove(), this.options.showTime + 1000)
 
@@ -115,7 +115,7 @@ class app {
 
     closeToastWithButton() {
 
-        exit.handle(this.e, this.options.position, this.options.out, this.options.exitDuration)
+        exit.handle(this.e, this.options.position, this.options.out, this.options.advanced.exitDuration)
     
         setTimeout(() => this.e.remove(), 1000);
     }
