@@ -6,7 +6,7 @@
 
 <script>
     
-let options {
+let options = {
     icon: 'success'
 };
     
