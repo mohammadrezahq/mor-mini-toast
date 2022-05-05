@@ -1,23 +1,24 @@
 # Mor Mini Toast for JavaScript
 
 
-> Read the documentation here: https://mohammadrezahq.github.io/mor-mini-toast/
+#### Mor mini toast is outdated.
+#### Use https://github.com/mohammadrezahq/more-toast instead.
 
 
-### Setup:
+~~### Setup:
 
-Install package with npm:
+~~Install package with npm:
 
 ```
 npm i mor-mini-toast
 ```
 
-Import package directly on web page:
+~~Import package directly on web page:
 
 ```html
 <script src="https://unpkg.com/mor-mini-toast@3.x/umd/bundle.js"></script>
 ```
-### Import
+~~### Import
 
 ```js
 import MiniToast from 'mor-mini-toast'
@@ -27,7 +28,7 @@ import MiniToast from 'mor-mini-toast'
 const MiniToast = require('mor-mini-toast')
 ```
 
-### Initialize
+~~### Initialize
 
 ```js
 let toast = MiniToast.init(String message, Object options)
@@ -39,18 +40,18 @@ let toast = window.miniToast.init(String message, Object options)
 
 ```
 
-### Set Position
+~~### Set Position
 
 ```js
 let options = {
     position: 'top-left' // default 
 }
 ```
-The position of the toast should be a combination of a vertical position and - a horizontal position: 'top-left', 'middle-center', 'bottom-right'
+~~The position of the toast should be a combination of a vertical position and - a horizontal position: 'top-left', 'middle-center', 'bottom-right'
 
-<b>Learn more in the documentation</b>
+~~<b>Learn more in the documentation</b>
 
-### Show the toast
+~~### Show the toast
 
 ```js
 toast.show()
